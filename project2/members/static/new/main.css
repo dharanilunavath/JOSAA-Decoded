@@ -1,0 +1,126 @@
+body {
+    background: #ffffff; 
+    color: #355b71;
+    margin-top: 5rem;
+    
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    color: #0f215a;
+}
+
+ul {
+    margin: 0;
+}
+
+.bg-steel {
+    background-color: #2fa3ec;
+}
+
+
+.site-header .navbar-nav .nav-link {
+    padding-left: 90px;
+    padding-right: 30px;
+    font-size: large;
+    font-weight: 700;
+    color: #82dcff;
+}
+.aditya{
+    color: #355b71;
+}
+.aditya1{
+    color: #0f215a;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #d3d2aa;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.content-section {
+    background: #ffffff;
+    padding: 2px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.article-title {
+    color: #444444;
+}
+
+a.article-title:hover {
+    color: #30465c;
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+    margin-top: 0;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+    color: #ae5123;
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+.media-content {
+    display: flex;
+    align-items: center;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+.article-image {
+    max-width: 100%;
+    max-height:100%;
+  }
+  
+.text {
+    font-size: 15px;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+
+
+
+
+
+

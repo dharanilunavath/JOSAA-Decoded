@@ -1,0 +1,240 @@
+{% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'new/main.css' %}" />
+
+    {% if title %}
+    <title>Django Project - {{title}}</title>
+    {% else %}
+    <title>Django Project</title>
+    {% endif %}
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'josaa-home'%}"
+            ><h4>JOSAA ANALYSIS</h4></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarToggle"
+            aria-controls="navbarToggle"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'josaa-home'%}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'josaa-about' %}"
+                >About</a
+              >
+              <a class="nav-item nav-link" href="{% url 'josaa-contact' %}"
+                >Contact me</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <script>
+      var admissionsData = JSON.parse("{{ admissions_data|escapejs }}");
+      var selectedGender = "Gender-Neutral"; // Default value
+      var catg = "OPEN"; // Default value
+
+      function changeCategory(category) {
+        document.getElementById("categoryDropdown").innerText = category;
+        catg = category;
+      }
+
+      function changeGender(gender) {
+        document.getElementById("genderDropdown").innerText = gender;
+        selectedGender = gender;
+      }
+
+      function changefile() {
+        let rank = document.querySelector("#rank").value;
+        let tbody = document.querySelector("#filteredTable tbody");
+        tbody.innerHTML = ""; // Clear the existing table rows
+
+        for (let i = 0; i < admissionsData.length; i++) {
+          let adm = admissionsData[i].fields;
+          let academicProgramName = adm.academic_program_name;
+          let closingRank = adm.closing_rank;
+          let openingRank = adm.opening_rank;
+          let gender = adm.gender;
+          let Year = adm.year;
+          let round1 = adm.round;
+          console.log(Year);
+          let category = adm.seat_type;
+
+          if (
+            rank <= closingRank &&
+            selectedGender === gender &&
+            catg === category
+          ) {
+            let row = tbody.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+            let cell5 = row.insertCell(4);
+            let cell6 = row.insertCell(5);
+            let cell7 = row.insertCell(6);
+            let cell8 = row.insertCell(7);
+
+            cell1.innerHTML = adm.institute;
+            cell2.innerHTML = adm.academic_program_name;
+            cell3.innerHTML = openingRank;
+            cell4.innerHTML = closingRank;
+            cell5.innerHTML = gender;
+            cell6.innerHTML = Year;
+            cell7.innerHTML = category;
+            cell8.innerHTML = round1;
+          }
+        }
+      }
+    </script>
+
+    <div>
+      <h4 class="aditya1">Show the list of my rank</h4>
+      <input type="number" id="rank" name="rank" />
+      <div class="dropdown d-inline-block ml-3">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="categoryDropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          OPEN
+        </button>
+        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+          <a class="dropdown-item" href="#" onclick="changeCategory('OPEN')"
+            >OPEN</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('EWS')"
+            >EWS</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('OBC-NCL')"
+            >OBC-NCL</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('SC')"
+            >SC</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('ST')"
+            >ST</a
+          >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeCategory('OPEN (PwD)')"
+            >OPEN (PwD)</a
+          >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeCategory('EWS (PwD)')"
+            >EWS (PwD)</a
+          >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeCategory('OBC-NCL (PwD)')"
+            >OBC-NCL (PwD)</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('SC (PwD)')"
+            >SC (PwD)</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeCategory('ST (PwD)')"
+            >ST (PwD)</a
+          >
+        </div>
+      </div>
+      <div class="dropdown d-inline-block ml-3">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="genderDropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Gender-Neutral
+        </button>
+        <div class="dropdown-menu" aria-labelledby="genderDropdown">
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeGender('Gender-Neutral')"
+            >Gender-Neutral</a
+          >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeGender('Female-only (including Supernumerary)')"
+            >Female</a
+          >
+        </div>
+      </div>
+      <input type="submit" onclick="changefile()" />
+    </div>
+    <div>
+      <h1>Filtered Data Table</h1>
+      <table id="filteredTable" border="1">
+        <thead>
+          <tr>
+            <th>Institute</th>
+            <th>Academic Program Name</th>
+            <th>Opening Rank</th>
+            <th>Closing Rank</th>
+            <th>Gender</th>
+            <th>Year</th>
+            <th>category</th>
+            <th>round</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be inserted here by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    {% endblock content %}
+  </body>
+</html>

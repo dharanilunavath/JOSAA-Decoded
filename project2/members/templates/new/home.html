@@ -1,0 +1,48 @@
+{% extends "new/base.html" %}
+{% block content %}
+   
+        <div class="media-body">
+            <div class="article-metadata">
+                <h4><a href="{% url 'iit-list'%}">View Institute wise Cut-Offs</a></h4>
+            </div>
+            <div class="media-content">
+                <p>Details about the 23 IITS 
+                </p>
+            </div>
+        </div>
+        <div class="media-body">
+            <div class="article-metadata">
+                <h4><a href="{% url 'josaa-input'%}">College Predictor</a></h4>
+            </div>
+            <div class="media-content">
+                <p>Find out the best college and stream at your rank
+                </p>
+            </div>
+        </div>
+    
+   
+   
+        <div class="media-body" >
+            <div class="article-metadata">
+                <h4><a href="{% url 'insti_cutoff'%}">Category & Gender Analysis</a></h4>
+            </div>
+            <div class="media-content">
+                <p> History repeats itself! Find out category-wise trends in closing ranks over the years
+                </p>
+            </div>
+        </div>
+
+    
+        <div class="media-body">
+            <div class="article-metadata">
+                <h4><a href="{% url 'iitbranch'%}">Roundwise cut-off Analysis</a></h4>
+            </div>
+            <div class="media-content">
+                <p> Highlights of the general trends in closing ranks of various streams across colleges over the multiple rounds of counselling
+                </p>
+            </div>
+        </div>    
+    
+</article>
+
+{% endblock content %}
